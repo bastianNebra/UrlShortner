@@ -22,7 +22,7 @@ class UserController extends Controller
     }
 
     public function profilUpdate(Request $request){
-        
+
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
 

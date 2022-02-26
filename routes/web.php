@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UrlsController;
 use App\Http\Controllers\UserController;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,13 @@ use App\Http\Controllers\UserController;
 |
 */
 
+Carbon::setToStringFormat(function ($date) {
+    return $date->formatLocalized($date->year === 1976 ?
+        'jS \o\f F g:i:s a' :
+        'jS \o\f F, Y g:i:s a'
+    );
+});
+
 Route::get('/','HomeController@home');
 
 Route::get('profil','UserController@profil')->name('profil');
@@ -22,9 +30,10 @@ Route::post('profil','UserController@profilUpdate')->name('profil.update');
 
 Route::resource('url','UrlsController');
 
-//Route::get('url/create','UrlsController@create')->name('url.short');
-//Route::post('url/create','UrlsController@store')->name('url.store');
-//Route::post('r/{id}','UrlsController@show')->name('url.show')->where('id','[0-9]+');
+Route::get('urls/create','UrlsController@create')->name('url.short');
+Route::post('urls/create','UrlsController@store')->name('url.store');
+Route::post('r/{id}','UrlsController@show')->name('url.show')->where('id','[0-9]+');
+Route::get('r/{id}','UrlsController@show')->name('url.show')->where('id','[0-9]+');
 
 
 

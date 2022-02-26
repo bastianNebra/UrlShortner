@@ -16,6 +16,7 @@ class UrlsController extends Controller
 
     public function show($id){
         $url = Url::findOrFail($id);
+        var_dump($url);
         return redirect($url->url,301);
     }
     public function index(){
@@ -33,11 +34,11 @@ class UrlsController extends Controller
 
         if (!$link) {
             $link = Url::create(['url'=>$url]);
-           // $this->validate($link,['url'=>'required|url']);            
+           // $this->validate($link,['url'=>'required|url']);
         }
 
         //$link = Url::firstOrCreate(['url'=>$url]); cette peut egalement etre plus utile pour la verification de données déja enregistrer;
-        
+
         return view("urls/success")->with(["url"=>$link]);
     }
 }
