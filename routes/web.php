@@ -48,3 +48,7 @@ Route::group(['prefix'=>'admin','middleware'=>'MyIp'],function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Weg für die Liste von Url
+Route::get('urls/list','UrlControllerList@index')->name('url.list');
+Route::post('url/list','UrlControllerList@list');
